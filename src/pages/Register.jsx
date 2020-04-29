@@ -1,9 +1,11 @@
 import React from 'react';
 
+import RegisterForm from '../components/auth/RegisterForm';
+
 const Register = () => {
 	return (
 		<div>
-			<h1>I am register page</h1>
+			<RegisterForm />
 		</div>
 	);
 };

@@ -40,35 +40,32 @@ export default function ButtonAppBar() {
 					>
 						FireBase
 					</Link>
-					<Button color='inherit'>
-						<Link
-							className={classes.link}
-							aria-label='to faq page'
-							component={RouterLink}
-							to='/faq'
-						>
-							FAQ
-						</Link>
+					<Button
+						className={classes.link}
+						aria-label='to faq page'
+						component={RouterLink}
+						to='/faq'
+						color='inherit'
+					>
+						FAQ
 					</Button>
-					<Button color='inherit'>
-						<Link
-							className={classes.link}
-							aria-label='to login page'
-							component={RouterLink}
-							to='/login'
-						>
-							Login
-						</Link>
+					<Button
+						className={classes.link}
+						aria-label='to login page'
+						component={RouterLink}
+						to='/login'
+						color='inherit'
+					>
+						Login
 					</Button>
-					<Button color='inherit'>
-						<Link
-							className={classes.link}
-							component={RouterLink}
-							aria-label='to register page'
-							to='/register'
-						>
-							Register
-						</Link>
+					<Button
+						className={classes.link}
+						component={RouterLink}
+						aria-label='to register page'
+						to='/register'
+						color='inherit'
+					>
+						Register
 					</Button>
 				</Toolbar>
 			</AppBar>
