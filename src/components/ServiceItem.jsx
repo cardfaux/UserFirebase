@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ServiceItem = ({ service }) => {
 	return (
@@ -10,6 +11,7 @@ const ServiceItem = ({ service }) => {
 			<div>
 				<h3>{service.description}</h3>
 			</div>
+			<Link to={`/services/${service.id}`}>Learn More</Link>
 		</div>
 	);
 };

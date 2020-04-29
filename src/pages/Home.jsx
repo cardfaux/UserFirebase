@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 import ServiceItem from '../components/ServiceItem';
 import { fetchServices } from '../app/Redux/actions/index';
 
-const Home = (props) => {
+const Home = ({ dispatch, services }) => {
 	useEffect(() => {
-		const { dispatch } = props;
 		dispatch(fetchServices());
-	}, [props]);
+	}, [dispatch]);
 
 	const renderServices = (services) => {
 		return services.map((service) => {
@@ -16,11 +15,9 @@ const Home = (props) => {
 		});
 	};
 
-	const { services } = props;
-
 	return <div>{renderServices(services)}</div>;
 };
 
-const mapStateToProps = (state) => ({ services: state.service.items });
+const mapStateToProps = (state) => ({ services: state.services.items });
 
 export default connect(mapStateToProps)(Home);
