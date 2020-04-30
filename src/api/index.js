@@ -41,9 +41,13 @@ export const registerUser = async ({ email, password, fullName }) => {
 	}
 };
 
-export const login = ({ email, password }) => {
-	return firebase
-		.auth()
-		.signInWithEmailAndPassword(email, password)
-		.catch((error) => Promise.reject(error.message));
+export const login = async ({ email, password }) => {
+	try {
+		const signinWithEmail = await firebase
+			.auth()
+			.signInWithEmailAndPassword(email, password);
+		return signinWithEmail;
+	} catch (error) {
+		return await Promise.reject(error.message);
+	}
 };
