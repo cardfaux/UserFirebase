@@ -3,3 +3,45 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.primary {
+  background-color: cornflowerblue;
+}
+
+.register-form {
+  display: flex;
+  justify-content: center;
+}
+
+.register-form form {
+  width: 100%;
+}
+
+.register-form .field {
+  margin: 2rem auto;
+}
+
+.register-form .field .control {
+  width: 100%;
+}
+
+.register-form .field .control input {
+  width: 100%;
+}
+
+.register-form form button {
+  width: 100%;
+  padding: 0.5rem
+}
+
+.form-error {
+  font-size: smaller;
+  color: red;
+
+}
+
+.button-primary {
+  font-size: x-large;
+  color: white;
+  background-color: cornflowerblue;
+}

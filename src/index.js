@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastProvider } from 'react-toast-notifications';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import initStore from './app/Redux/store/index';
@@ -11,7 +12,13 @@ const store = initStore();
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<ToastProvider
+			autoDismiss
+			autoDismissTimeout={4000}
+			placement='bottom-right'
+		>
+			<App />
+		</ToastProvider>
 	</Provider>,
 	document.getElementById('root')
 );

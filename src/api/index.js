@@ -1,3 +1,6 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
 import database from '../app/Firebase/DataBase/cloudFirestore';
 
 export const fetchServiceById = async (serviceId) => {
@@ -12,4 +15,35 @@ export const fetchServices = async () => {
 		...doc.data(),
 	}));
 	return services;
+};
+
+const createUserProfile = (userProfile) => {
+	return database.collection('profiles').doc(userProfile.uid).set(userProfile);
+};
+
+export const registerUser = async ({ email, password, fullName }) => {
+	try {
+		const res = await firebase
+			.auth()
+			.createUserWithEmailAndPassword(email, password);
+		const { user } = res;
+		const userProfile = {
+			uid: user.uid,
+			fullName,
+			email,
+			services: [],
+			description: '',
+		};
+		await createUserProfile(userProfile);
+		return userProfile;
+	} catch (error) {
+		return Promise.reject(error.message);
+	}
+};
+
+export const login = ({ email, password }) => {
+	return firebase
+		.auth()
+		.signInWithEmailAndPassword(email, password)
+		.catch((error) => Promise.reject(error.message));
 };

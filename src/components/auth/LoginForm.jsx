@@ -1,27 +1,43 @@
+/* eslint-disable no-useless-escape */
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-export default function LoginForm() {
-	const { register, handleSubmit, errors } = useForm();
-	const onSubmit = (data) => console.log(data);
-	console.log(errors);
+const LoginForm = (props) => {
+	const { register, handleSubmit } = useForm();
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<input
-				type='email'
-				placeholder='email'
-				name='email'
-				ref={register({ required: true })}
-			/>
-			<input
-				type='text'
-				placeholder='password'
-				name='password'
-				ref={register({ required: true })}
-			/>
-
-			<input type='submit' />
-		</form>
+		<div className='register-form'>
+			<form onSubmit={handleSubmit(props.onLogin)}>
+				<div className='field'>
+					<div className='control'>
+						<input
+							ref={register}
+							name='email'
+							className='input is-large'
+							type='email'
+							placeholder='Your Email'
+							autoComplete='email'
+						/>
+					</div>
+				</div>
+				<div className='field'>
+					<div className='control'>
+						<input
+							ref={register}
+							name='password'
+							className='input is-large'
+							type='password'
+							placeholder='Your Password'
+							autoComplete='current-password'
+						/>
+					</div>
+				</div>
+				<button type='submit' className='button-primary'>
+					Login
+				</button>
+			</form>
+		</div>
 	);
-}
+};
+
+export default LoginForm;

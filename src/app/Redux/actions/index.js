@@ -26,3 +26,9 @@ export const fetchServiceById = (serviceId) => async (dispatch, getState) => {
 		service,
 	});
 };
+
+export const register = (registerFormData) => {
+	return api.registerUser({ ...registerFormData });
+};
+
+export const login = (loginData) => api.login({ ...loginData });

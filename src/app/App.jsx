@@ -10,18 +10,16 @@ import FaqPage from '../pages/Faq';
 
 function App() {
 	return (
-		<div className='App'>
-			<Router>
-				<NavBar />
-				<Switch>
-					<Route exact path='/' component={HomePage} />
-					<Route path='/login' component={LoginPage} />
-					<Route path='/register' component={RegisterPage} />
-					<Route path='/services/:serviceId' component={ServiceDetailPage} />
-					<Route path='/faq' component={FaqPage} />
-				</Switch>
-			</Router>
-		</div>
+		<Router>
+			<NavBar />
+			<Switch>
+				<Route exact path='/' component={HomePage} />
+				<Route path='/login' component={LoginPage} />
+				<Route path='/register' component={RegisterPage} />
+				<Route path='/services/:serviceId' component={ServiceDetailPage} />
+				<Route path='/faq' component={FaqPage} />
+			</Switch>
+		</Router>
 	);
 }
 
