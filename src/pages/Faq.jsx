@@ -1,4 +1,5 @@
 import React from 'react';
+import withAuthorization from '../components/hoc/withAuthorization';
 
 const Faq = () => {
 	return (
@@ -8,4 +9,4 @@ const Faq = () => {
 	);
 };
 
-export default Faq;
+export default withAuthorization(Faq);

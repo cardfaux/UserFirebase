@@ -1,25 +1,35 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import NavBar from './Layout/NavBar';
-import HomePage from '../pages/Home';
-import LoginPage from '../pages/Login';
-import RegisterPage from '../pages/Register';
-import ServiceDetailPage from '../pages/ServiceDetail';
-import FaqPage from '../pages/Faq';
+import { Provider } from 'react-redux';
+import initStore from '../app/Redux/store/index';
+
+import ServiceApp from '../ServiceApp';
+import {
+	onAuthStateChanged,
+	storeAuthUser,
+	//resetAuthState,
+} from '../app/Redux/actions/index';
+
+const store = initStore();
 
 function App() {
+	useEffect(() => {
+		const unsubscribeFromAuth = onAuthStateChanged((authUser) => {
+			store.dispatch(storeAuthUser(authUser));
+
+			//store.dispatch(resetAuthState());
+		});
+
+		return () => unsubscribeFromAuth();
+	}, []);
+
 	return (
-		<Router>
-			<NavBar />
-			<Switch>
-				<Route exact path='/' component={HomePage} />
-				<Route path='/login' component={LoginPage} />
-				<Route path='/register' component={RegisterPage} />
-				<Route path='/services/:serviceId' component={ServiceDetailPage} />
-				<Route path='/faq' component={FaqPage} />
-			</Switch>
-		</Router>
+		<Provider store={store}>
+			<Router>
+				<ServiceApp />
+			</Router>
+		</Provider>
 	);
 }
 

@@ -51,3 +51,19 @@ export const login = async ({ email, password }) => {
 		return await Promise.reject(error.message);
 	}
 };
+
+export const logout = () => {
+	return firebase.auth().signOut();
+};
+
+export const onAuthStateChanged = (onAuthCallback) => {
+	return firebase.auth().onAuthStateChanged(onAuthCallback);
+};
+
+export const getUserProfile = (uid) => {
+	return database
+		.collection('profiles')
+		.doc(uid)
+		.get()
+		.then((snapshot) => ({ uid, ...snapshot.data() }));
+};

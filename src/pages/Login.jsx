@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
+import onlyGuest from '../components/hoc/onlyGuest';
 import LoginForm from '../components/auth/LoginForm';
 import { login } from '../app/Redux/actions/index';
 
@@ -12,11 +13,16 @@ const Login = () => {
 	const [redirect, setRedirect] = useState(false);
 	const { addToast } = useToasts();
 
-	const loginUser = (loginData) => {
-		login(loginData).then(
-			(_) => setRedirect(true),
-			(errorMessage) => addToast(errorMessage, { appearance: 'error' })
-		);
+	const loginUser = async (loginData) => {
+		try {
+			const loginUser = await login(loginData);
+			if (loginUser) {
+				addToast('Logged In Successfully', { appearance: 'success' });
+				setRedirect(true);
+			}
+		} catch (error) {
+			addToast(error, { appearance: 'error' });
+		}
 	};
 
 	const useStyles = makeStyles({
@@ -40,4 +46,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default onlyGuest(Login);

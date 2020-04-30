@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,8 +24,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function ButtonAppBar() {
+const NavBar = (props) => {
 	const classes = useStyles();
+	const { user, isAuth } = props.auth;
+	const { logout } = props;
 
 	return (
 		<div className={classes.root}>
@@ -40,6 +42,11 @@ export default function ButtonAppBar() {
 					>
 						FireBase
 					</Link>
+					{user && (
+						<div
+							style={{ color: '#ff4500', marginRight: '4rem' }}
+						>{`Hi ${user.fullName}`}</div>
+					)}
 					<Button
 						className={classes.link}
 						aria-label='to faq page'
@@ -49,26 +56,37 @@ export default function ButtonAppBar() {
 					>
 						FAQ
 					</Button>
-					<Button
-						className={classes.link}
-						aria-label='to login page'
-						component={RouterLink}
-						to='/login'
-						color='inherit'
-					>
-						Login
-					</Button>
-					<Button
-						className={classes.link}
-						component={RouterLink}
-						aria-label='to register page'
-						to='/register'
-						color='inherit'
-					>
-						Register
-					</Button>
+					{!isAuth && (
+						<Fragment>
+							<Button
+								className={classes.link}
+								aria-label='to login page'
+								component={RouterLink}
+								to='/login'
+								color='inherit'
+							>
+								Login
+							</Button>
+							<Button
+								className={classes.link}
+								component={RouterLink}
+								aria-label='to register page'
+								to='/register'
+								color='inherit'
+							>
+								Register
+							</Button>
+						</Fragment>
+					)}
+					{isAuth && (
+						<div style={{ cursor: 'pointer' }} onClick={logout} color='inherit'>
+							Logout
+						</div>
+					)}
 				</Toolbar>
 			</AppBar>
 		</div>
 	);
-}
+};
+
+export default NavBar;

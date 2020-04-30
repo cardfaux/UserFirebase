@@ -5,23 +5,24 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
+import onlyGuest from '../components/hoc/onlyGuest';
 import { register } from '../app/Redux/actions/index';
 import RegisterForm from '../components/auth/RegisterForm';
 
 const Register = () => {
 	const [redirect, setRedirect] = useState(false);
 	const { addToast } = useToasts();
-	const registerUser = (userData) => {
-		register(userData).then(
-			(_) => {
-				return setRedirect(true);
-			},
-			(errorMessage) => {
-				return addToast(errorMessage, {
-					appearance: 'error',
-				});
+
+	const registerUser = async (loginData) => {
+		try {
+			const registerUser = await register(loginData);
+			if (registerUser) {
+				addToast('Registered Successfully', { appearance: 'success' });
+				setRedirect(true);
 			}
-		);
+		} catch (error) {
+			addToast(error, { appearance: 'error' });
+		}
 	};
 
 	const useStyles = makeStyles({
@@ -45,4 +46,4 @@ const Register = () => {
 	);
 };
 
-export default Register;
+export default onlyGuest(Register);
