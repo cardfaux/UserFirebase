@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-import onlyGuest from '../components/hoc/onlyGuest';
+import withNoAuthorization from '../components/hoc/withNoAuthorization';
 import LoginForm from '../components/auth/LoginForm';
 import { login } from '../app/Redux/actions/index';
 
@@ -46,4 +46,4 @@ const Login = () => {
 	);
 };
 
-export default onlyGuest(Login);
+export default withNoAuthorization(Login);

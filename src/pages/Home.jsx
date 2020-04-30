@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import ServiceItem from '../components/ServiceItem';
 import { fetchServices } from '../app/Redux/actions/index';
 
-const Home = ({ dispatch, services }) => {
+const Home = ({ services, fetchServices }) => {
 	useEffect(() => {
-		dispatch(fetchServices());
-	}, [dispatch]);
+		fetchServices();
+	}, [fetchServices]);
 
 	const renderServices = (services) => {
 		return services.map((service) => {
@@ -20,4 +20,4 @@ const Home = ({ dispatch, services }) => {
 
 const mapStateToProps = (state) => ({ services: state.services.items });
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, { fetchServices })(Home);

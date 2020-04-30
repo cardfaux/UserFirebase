@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { fetchServiceById } from '../app/Redux/actions/index';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-const ServiceDetail = ({ dispatch, isFetching, service }) => {
+const ServiceDetail = ({ fetchServiceById, isFetching, service }) => {
 	const { serviceId } = useParams();
 
 	useEffect(() => {
-		dispatch(fetchServiceById(serviceId));
-	}, [serviceId, dispatch]);
+		fetchServiceById(serviceId);
+	}, [serviceId, fetchServiceById]);
 
 	if (isFetching || serviceId !== service.id) {
 		return <LoadingSpinner />;
@@ -47,4 +47,4 @@ const mapStateToProps = (state) => ({
 	isFetching: state.selectedService.isFetching,
 });
 
-export default connect(mapStateToProps)(ServiceDetail);
+export default connect(mapStateToProps, { fetchServiceById })(ServiceDetail);

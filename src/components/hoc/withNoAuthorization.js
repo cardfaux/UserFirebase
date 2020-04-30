@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-const onlyGuest = (Component) => {
-	const OnlyGuest = (props) => {
+const withNoAuthorization = (Component) => {
+	const WithNoAuthorization = (props) => {
 		const { auth, dispatch, ...rest } = props;
 		return auth.isAuth ? <Redirect to='/' /> : <Component {...rest} />;
 	};
@@ -11,7 +11,7 @@ const onlyGuest = (Component) => {
 	const mapStateToProps = (state) => {
 		return { auth: state.auth };
 	};
-	return connect(mapStateToProps)(OnlyGuest);
+	return connect(mapStateToProps)(WithNoAuthorization);
 };
 
-export default onlyGuest;
+export default withNoAuthorization;

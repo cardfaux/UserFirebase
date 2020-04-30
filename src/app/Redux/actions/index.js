@@ -46,6 +46,7 @@ export const onAuthStateChanged = (onAuthCallback) => {
 };
 
 export const storeAuthUser = (authUser) => (dispatch) => {
+	dispatch({ type: RESET_AUTH_STATE });
 	if (authUser) {
 		return api.getUserProfile(authUser.uid).then((userWithProfile) => {
 			return dispatch({ user: userWithProfile, type: SET_AUTH_USER });
@@ -54,5 +55,3 @@ export const storeAuthUser = (authUser) => (dispatch) => {
 		return dispatch({ user: null, type: SET_AUTH_USER });
 	}
 };
-
-export const resetAuthState = () => ({ type: RESET_AUTH_STATE });
