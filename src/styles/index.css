@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .primary {
   background-color: cornflowerblue;
 }
@@ -25,7 +30,8 @@
   width: 100%;
 }
 
-.register-form .field .control input {
+.register-form .field .control input,
+textarea {
   width: 100%;
 }
 
@@ -44,4 +50,38 @@
   font-size: x-large;
   color: white;
   background-color: cornflowerblue;
+}
+
+.home-page {
+  display: flex;
+  justify-content: center;
+  margin-top: 15%;
+}
+
+.detail-page {
+  margin-top: 5rem;
+}
+
+.detail-page .image img {
+  width: 40rem;
+}
+
+.hero-body {
+  width: 40rem;
+}
+
+.detail-info {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 2rem;
+}
+
+.weight,
+.reps {
+  text-align: center;
+  margin-right: 4rem;
+  border: 1px solid black;
+  height: 50rem;
+  margin-top: -30rem;
+  width: 10rem;
 }

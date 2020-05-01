@@ -4,13 +4,28 @@ import {
 	REQUEST_SERVICE,
 	SET_AUTH_USER,
 	RESET_AUTH_STATE,
+	FETCH_USER_SERVICES_SUCCESS,
 } from '../types';
 import * as api from '../../../api/index';
+
+export const createService = (newService, userId) => {
+	newService.user = userId;
+
+	return api.createService(newService);
+};
 
 export const fetchServices = () => async (dispatch) => {
 	const services = await api.fetchServices();
 	return dispatch({
 		type: FETCH_SERVICES_SUCCESS,
+		services,
+	});
+};
+
+export const fetchUserServices = (userId) => async (dispatch) => {
+	const services = await api.fetchUserServices(userId);
+	return dispatch({
+		type: FETCH_USER_SERVICES_SUCCESS,
 		services,
 	});
 };

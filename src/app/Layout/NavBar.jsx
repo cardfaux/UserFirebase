@@ -47,15 +47,28 @@ const NavBar = (props) => {
 							style={{ color: '#ff4500', marginRight: '4rem' }}
 						>{`Hi ${user.fullName}`}</div>
 					)}
-					<Button
-						className={classes.link}
-						aria-label='to faq page'
-						component={RouterLink}
-						to='/faq'
-						color='inherit'
-					>
-						FAQ
-					</Button>
+					{isAuth && (
+						<Button
+							className={classes.link}
+							aria-label='to faq page'
+							component={RouterLink}
+							to='/services/me'
+							color='inherit'
+						>
+							My Services
+						</Button>
+					)}
+					{isAuth && (
+						<Button
+							className={classes.link}
+							aria-label='to faq page'
+							component={RouterLink}
+							to='/create/service'
+							color='inherit'
+						>
+							Add Service
+						</Button>
+					)}
 					{!isAuth && (
 						<Fragment>
 							<Button
