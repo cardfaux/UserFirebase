@@ -20,6 +20,7 @@ const useStyles = makeStyles({
 });
 
 const ServiceItem = ({ service }) => {
+	console.log(service);
 	const classes = useStyles();
 
 	return (
@@ -28,14 +29,14 @@ const ServiceItem = ({ service }) => {
 				<CardMedia
 					className={classes.media}
 					image={service.image}
-					title={service.title}
+					title={service.name}
 				/>
 				<CardContent>
 					<Typography gutterBottom variant='h5' component='h2'>
 						{service.title}
 					</Typography>
 					<Typography variant='body2' color='textSecondary' component='p'>
-						{service.description}
+						{service.details}
 					</Typography>
 				</CardContent>
 			</CardActionArea>

@@ -17,7 +17,9 @@ const Home = ({ services, fetchServices }) => {
 
 	return (
 		<Fragment>
-			<h1 style={{ textAlign: 'center' }}>Workouts</h1>
+			<h1 className='mt-2' style={{ textAlign: 'center' }}>
+				Everybodys Logs
+			</h1>
 			<div className='home-page'>{renderServices(services)}</div>
 		</Fragment>
 	);

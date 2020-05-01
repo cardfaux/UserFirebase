@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import withAuthorization from '../components/hoc/withAuthorization';
 import ServiceItem from '../components/ServiceItem';
 
@@ -15,19 +15,19 @@ const UserServices = (props) => {
 		dispatch(fetchUserServices(user.uid));
 	}, [dispatch, user.uid]);
 
+	const renderServices = (services) => {
+		return services.map((service) => {
+			return <ServiceItem key={service.id} service={service} />;
+		});
+	};
+
 	return (
-		<div className='container'>
-			<div className='content-wrapper'>
-				<h1 className='title'>Your Services</h1>
-				<div className='columns is-multiline'>
-					{services.map((service) => (
-						<div key={service.id} className='column'>
-							<ServiceItem service={service} />
-						</div>
-					))}
-				</div>
-			</div>
-		</div>
+		<Fragment>
+			<h1 className='mt-2' style={{ textAlign: 'center' }}>
+				Your Logs
+			</h1>
+			<div className='home-page'>{renderServices(services)}</div>
+		</Fragment>
 	);
 };
 

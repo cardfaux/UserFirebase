@@ -9,6 +9,10 @@ a {
   color: inherit;
 }
 
+.mt-2 {
+  margin-top: 2rem;
+}
+
 .primary {
   background-color: cornflowerblue;
 }
@@ -53,9 +57,10 @@ textarea {
 }
 
 .home-page {
+  flex-wrap: wrap;
   display: flex;
   justify-content: center;
-  margin-top: 15%;
+  margin-top: 2%;
 }
 
 .detail-page {

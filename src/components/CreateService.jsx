@@ -14,20 +14,21 @@ const CreateService = (props) => {
 					<div className='control'>
 						<input
 							ref={register({ required: true })}
-							name='name'
+							name='title'
 							className='input is-large'
 							type='text'
-							placeholder='Name'
+							placeholder='Title'
 						/>
 						{errors.name && (
 							<div className='form-error'>
 								{errors.name.type === 'required' && (
-									<span className='help is-danger'>Name is required</span>
+									<span className='help is-danger'>Title is required</span>
 								)}
 							</div>
 						)}
 					</div>
 				</div>
+
 				<div className='field'>
 					<div className='control'>
 						<input
@@ -53,20 +54,57 @@ const CreateService = (props) => {
 						)}
 					</div>
 				</div>
+
+				<div className='field'>
+					<div className='control'>
+						<input
+							ref={register()}
+							name='sets'
+							className='input is-large'
+							type='number'
+							placeholder='Number Of Sets'
+						/>
+					</div>
+				</div>
+
+				<div className='field'>
+					<div className='control'>
+						<input
+							ref={register()}
+							name='reps'
+							className='input is-large'
+							type='number'
+							placeholder='Number Of Repitions'
+						/>
+					</div>
+				</div>
+
+				<div className='field'>
+					<div className='control'>
+						<input
+							ref={register()}
+							name='weight'
+							className='input is-large'
+							type='number'
+							placeholder='Amount Of Weight'
+						/>
+					</div>
+				</div>
+
 				<div className='field'>
 					<div className='control'>
 						<textarea
-							ref={register({ maxLength: 100 })}
-							name='notes'
+							ref={register({ maxLength: 1000 })}
+							name='details'
 							className='input is-large'
 							rows='5'
-							placeholder='Notes'
+							placeholder='Log Details'
 						/>
-						{errors.notes && (
+						{errors.details && (
 							<div className='form-error'>
-								{errors.notes.type === 'maxLength' && (
+								{errors.details.type === 'maxLength' && (
 									<span className='help is-danger'>
-										Maximum length is 100 characters
+										Maximum length is 1000 characters
 									</span>
 								)}
 							</div>

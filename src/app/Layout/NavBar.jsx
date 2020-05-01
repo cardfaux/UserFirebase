@@ -55,7 +55,7 @@ const NavBar = (props) => {
 							to='/services/me'
 							color='inherit'
 						>
-							My Services
+							My Logs
 						</Button>
 					)}
 					{isAuth && (
@@ -66,7 +66,7 @@ const NavBar = (props) => {
 							to='/create/service'
 							color='inherit'
 						>
-							Add Service
+							Add Log
 						</Button>
 					)}
 					{!isAuth && (
