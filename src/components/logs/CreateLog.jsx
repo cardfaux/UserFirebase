@@ -2,9 +2,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import { isValidImage, isValidUrl } from '../app/utils/validators';
+import { isValidImage, isValidUrl } from '../../app/utils/validators';
 
-const CreateService = (props) => {
+const CreateLog = (props) => {
 	const { register, handleSubmit, errors } = useForm();
 
 	return (
@@ -119,4 +119,4 @@ const CreateService = (props) => {
 	);
 };
 
-export default CreateService;
+export default CreateLog;

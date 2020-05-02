@@ -7,8 +7,9 @@ import Routes from './app/Layout/Routes';
 
 import { logout } from './app/Redux/actions/index';
 
-const ServiceApp = (props) => {
-	const logoutUser = () => props.dispatch(logout());
+const FirebaseApp = (props) => {
+	//const logoutUser = () => props.dispatch(logout());
+	const logoutUser = () => props.logout();
 
 	return props.auth.isAuthResolved ? (
 		<Fragment>
@@ -26,4 +27,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(ServiceApp);
+export default connect(mapStateToProps, { logout })(FirebaseApp);

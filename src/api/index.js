@@ -6,5 +6,5 @@ export const createRef = (collection, docId) => {
 	return database.doc(`${collection}/` + docId);
 };
 
-export * from './services';
+export * from './logs';
 export * from './auth';

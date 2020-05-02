@@ -5,17 +5,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-import withNoAuthorization from '../components/hoc/withNoAuthorization';
-import { register } from '../app/Redux/actions/index';
-import RegisterForm from '../components/auth/RegisterForm';
+import withNoAuthorization from '../../components/hoc/withNoAuthorization';
+import { register } from '../../app/Redux/actions/index';
+import RegisterForm from '../../components/auth/RegisterForm';
 
 const Register = () => {
 	const [redirect, setRedirect] = useState(false);
 	const { addToast } = useToasts();
 
-	const registerUser = async (loginData) => {
+	const registerUser = async (registerData) => {
 		try {
-			const registerUser = await register(loginData);
+			const registerUser = await register(registerData);
 			if (registerUser) {
 				addToast('Registered Successfully', { appearance: 'success' });
 				setRedirect(true);

@@ -5,17 +5,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-import withAuthorization from '../components/hoc/withAuthorization';
-import CreateService from '../components/CreateService';
-import { createService } from '../app/Redux/actions/index';
+import withAuthorization from '../../components/hoc/withAuthorization';
+import CreateLogForm from '../../components/logs/CreateLog';
+import { createLog } from '../../app/Redux/actions/index';
 
-const ServiceCreate = (props) => {
+const CreateLog = (props) => {
 	const [redirect, setRedirect] = useState(false);
 	const { addToast } = useToasts();
 
 	const handleSubmit = async (formData) => {
 		try {
-			const dataSent = await createService(formData, props.auth.user.uid);
+			const dataSent = await createLog(formData, props.auth.user.uid);
 			if (dataSent) {
 				addToast('Saved Successfully', { appearance: 'success' });
 				setRedirect(true);
@@ -40,10 +40,10 @@ const ServiceCreate = (props) => {
 		<Card className={classes.root}>
 			<CardContent>
 				<h1>Create Service Form</h1>
-				<CreateService onFormData={handleSubmit} />
+				<CreateLogForm onFormData={handleSubmit} />
 			</CardContent>
 		</Card>
 	);
 };
 
-export default withAuthorization(ServiceCreate);
+export default withAuthorization(CreateLog);

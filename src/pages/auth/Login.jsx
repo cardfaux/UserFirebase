@@ -5,9 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-import withNoAuthorization from '../components/hoc/withNoAuthorization';
-import LoginForm from '../components/auth/LoginForm';
-import { login } from '../app/Redux/actions/index';
+import withNoAuthorization from '../../components/hoc/withNoAuthorization';
+import LoginForm from '../../components/auth/LoginForm';
+import { login } from '../../app/Redux/actions/index';
 
 const Login = () => {
 	const [redirect, setRedirect] = useState(false);

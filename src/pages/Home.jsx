@@ -1,17 +1,18 @@
 import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import ServiceItem from '../components/ServiceItem';
-import { fetchServices } from '../app/Redux/actions/index';
+import withAuthorization from '../components/hoc/withAuthorization';
+import LogItem from '../components/logs/LogItem';
+import { fetchLogs } from '../app/Redux/actions/index';
 
-const Home = ({ services, fetchServices, authUser }) => {
+const Home = ({ services, fetchLogs }) => {
 	useEffect(() => {
-		fetchServices();
-	}, [fetchServices]);
+		fetchLogs();
+	}, [fetchLogs]);
 
 	const renderServices = (services) => {
 		return services.map((service) => {
-			return <ServiceItem user={authUser} key={service.id} service={service} />;
+			return <LogItem key={service.id} service={service} />;
 		});
 	};
 
@@ -30,4 +31,4 @@ const mapStateToProps = (state) => ({
 	authUser: state.auth.user,
 });
 
-export default connect(mapStateToProps, { fetchServices })(Home);
+export default withAuthorization(connect(mapStateToProps, { fetchLogs })(Home));

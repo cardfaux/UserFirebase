@@ -1,14 +1,11 @@
 import React, { useEffect, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchServiceById } from '../app/Redux/actions/index';
-import LoadingSpinner from '../components/LoadingSpinner';
-import { Button } from '@material-ui/core';
+import { fetchLogById } from '../../app/Redux/actions/index';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-
-import AddRepsModal from '../components/AddRepsModal';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -27,26 +24,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const ServiceDetail = ({ fetchServiceById, isFetching, service }) => {
+const ServiceDetail = ({ fetchLogById, isFetching, service }) => {
 	const classes = useStyles();
-	const [open, setOpen] = React.useState(false);
 
-	const onFormData = (formData) => {
-		console.log(formData);
-	};
-
-	const handleOpen = () => {
-		setOpen(true);
-	};
-
-	const handleClose = () => {
-		setOpen(false);
-	};
 	const { serviceId } = useParams();
 
 	useEffect(() => {
-		fetchServiceById(serviceId);
-	}, [serviceId, fetchServiceById]);
+		fetchLogById(serviceId);
+	}, [serviceId, fetchLogById]);
 
 	if (isFetching || serviceId !== service.id) {
 		return <LoadingSpinner />;
@@ -54,13 +39,6 @@ const ServiceDetail = ({ fetchServiceById, isFetching, service }) => {
 
 	return (
 		<Fragment>
-			<AddRepsModal
-				open={open}
-				handleClose={handleClose}
-				handleOpen={handleOpen}
-				onFormData={onFormData}
-			/>
-			<Button onClick={() => setOpen(true)}>Open Modal</Button>
 			<div className={classes.root}>
 				<Grid container spacing={3}>
 					<Grid className={classes.title} item xs={12}>
@@ -96,4 +74,4 @@ const mapStateToProps = (state) => ({
 	isFetching: state.selectedService.isFetching,
 });
 
-export default connect(mapStateToProps, { fetchServiceById })(ServiceDetail);
+export default connect(mapStateToProps, { fetchLogById })(ServiceDetail);
