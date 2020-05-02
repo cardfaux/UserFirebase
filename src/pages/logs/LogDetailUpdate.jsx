@@ -14,7 +14,7 @@ import { updateLog } from '../../app/Redux/actions/index';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 const LogDetailUpdate = (props) => {
-	const { fetchLogById, isFetching, service, authUserId } = props;
+	const { fetchLogById, isFetching, log, authUserId } = props;
 	const [redirect, setRedirect] = useState(false);
 	const { addToast } = useToasts();
 	const { serviceId } = useParams();
@@ -24,10 +24,8 @@ const LogDetailUpdate = (props) => {
 	}, [serviceId, fetchLogById]);
 
 	const handleSubmit = async (formData) => {
-		// updateService(service.id, formData, props.auth.user.uid);
-		// setRedirect(true);
 		try {
-			const dataUpdated = await updateLog(service.id, formData, authUserId);
+			const dataUpdated = await updateLog(log.id, formData, authUserId);
 
 			addToast('Updated Successfully', { appearance: 'success' });
 			setRedirect(true);
@@ -47,21 +45,21 @@ const LogDetailUpdate = (props) => {
 
 	const classes = useStyles();
 	if (redirect) return <Redirect to='/' />;
-	if (isFetching || serviceId !== service.id) {
+	if (isFetching || serviceId !== log.id) {
 		return <LoadingSpinner />;
 	}
 
 	return (
 		<Card className={classes.root}>
 			<CardContent>
-				<h1>Update Service Form</h1>
+				<h1>Update Log Form</h1>
 				<UpdateLogItem
-					details={service.details}
-					weight={service.weight}
-					reps={service.reps}
-					sets={service.sets}
-					image={service.image}
-					title={service.title}
+					details={log.details}
+					weight={log.weight}
+					reps={log.reps}
+					sets={log.sets}
+					image={log.image}
+					title={log.title}
 					onFormData={handleSubmit}
 				/>
 			</CardContent>
@@ -70,8 +68,8 @@ const LogDetailUpdate = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-	service: state.selectedService.item,
-	isFetching: state.selectedService.isFetching,
+	log: state.selectedLog.item,
+	isFetching: state.selectedLog.isFetching,
 	authUserId: state.auth.user.uid,
 });
 

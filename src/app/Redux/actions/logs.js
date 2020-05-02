@@ -30,32 +30,31 @@ export const deleteLog = (docId) => {
 };
 
 export const fetchLogs = () => async (dispatch) => {
-	const services = await api.fetchLogs();
+	const logs = await api.fetchLogs();
 	return dispatch({
 		type: FETCH_SERVICES_SUCCESS,
-		services,
+		payload: logs,
 	});
 };
 
 export const fetchUserLogs = (userId) => async (dispatch) => {
-	const services = await api.fetchUserLogs(userId);
+	const logs = await api.fetchUserLogs(userId);
 	return dispatch({
 		type: FETCH_USER_SERVICES_SUCCESS,
-		services,
+		payload: logs,
 	});
 };
 
 export const fetchLogById = (serviceId) => async (dispatch, getState) => {
-	const lastService = getState().selectedService.item;
-	if (lastService.id && lastService.id === serviceId) {
+	const lastViewedLog = getState().selectedLog.item;
+	if (lastViewedLog.id && lastViewedLog.id === serviceId) {
 		return Promise.resolve();
 	}
 
 	dispatch({ type: REQUEST_SERVICE });
-	const service = await api.fetchLogById(serviceId);
-	//service.user = await api.getUserProfile(service.user);
-	const user = await service.user.get();
-	service.user = user.data();
-	service.user.id = user.id;
-	dispatch({ type: FETCH_SERVICE_SUCCESS, service });
+	const log = await api.fetchLogById(serviceId);
+	const user = await log.user.get();
+	log.user = user.data();
+	log.user.id = user.id;
+	dispatch({ type: FETCH_SERVICE_SUCCESS, payload: log });
 };

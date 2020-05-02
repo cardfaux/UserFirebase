@@ -5,14 +5,14 @@ import withAuthorization from '../components/hoc/withAuthorization';
 import LogItem from '../components/logs/LogItem';
 import { fetchLogs } from '../app/Redux/actions/index';
 
-const Home = ({ services, fetchLogs }) => {
+const Home = ({ logs, fetchLogs }) => {
 	useEffect(() => {
 		fetchLogs();
 	}, [fetchLogs]);
 
-	const renderServices = (services) => {
-		return services.map((service) => {
-			return <LogItem key={service.id} service={service} />;
+	const renderServices = (logs) => {
+		return logs.map((log) => {
+			return <LogItem key={log.id} service={log} />;
 		});
 	};
 
@@ -21,13 +21,13 @@ const Home = ({ services, fetchLogs }) => {
 			<h1 className='mt-2' style={{ textAlign: 'center' }}>
 				Everybodys Logs
 			</h1>
-			<div className='home-page'>{renderServices(services)}</div>
+			<div className='home-page'>{renderServices(logs)}</div>
 		</Fragment>
 	);
 };
 
 const mapStateToProps = (state) => ({
-	services: state.services.items,
+	logs: state.logs.items,
 	authUser: state.auth.user,
 });
 

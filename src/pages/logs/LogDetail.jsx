@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const ServiceDetail = ({ fetchLogById, isFetching, service }) => {
+const ServiceDetail = ({ fetchLogById, isFetching, log }) => {
 	const classes = useStyles();
 
 	const { serviceId } = useParams();
@@ -33,7 +33,7 @@ const ServiceDetail = ({ fetchLogById, isFetching, service }) => {
 		fetchLogById(serviceId);
 	}, [serviceId, fetchLogById]);
 
-	if (isFetching || serviceId !== service.id) {
+	if (isFetching || serviceId !== log.id) {
 		return <LoadingSpinner />;
 	}
 
@@ -42,26 +42,22 @@ const ServiceDetail = ({ fetchLogById, isFetching, service }) => {
 			<div className={classes.root}>
 				<Grid container spacing={3}>
 					<Grid className={classes.title} item xs={12}>
-						{service.title}
+						{log.title}
 					</Grid>
 					<Grid item xs={6}>
-						<img
-							style={{ width: '30rem' }}
-							src={service.image}
-							alt={service.title}
-						/>
+						<img style={{ width: '30rem' }} src={log.image} alt={log.title} />
 					</Grid>
 					<Grid className={classes.details} item xs={6}>
-						{service.details}
+						{log.details}
 					</Grid>
 					<Grid className={classes.item} item xs={4}>
-						Number of Sets = {service.sets}
+						Number of Sets = {log.sets}
 					</Grid>
 					<Grid className={classes.item} item xs={4}>
-						Number Of Reps = {service.reps}
+						Number Of Reps = {log.reps}
 					</Grid>
 					<Grid className={classes.item} item xs={4}>
-						Amount Of Weight = {service.weight}
+						Amount Of Weight = {log.weight}
 					</Grid>
 				</Grid>
 			</div>
@@ -70,8 +66,8 @@ const ServiceDetail = ({ fetchLogById, isFetching, service }) => {
 };
 
 const mapStateToProps = (state) => ({
-	service: state.selectedService.item,
-	isFetching: state.selectedService.isFetching,
+	log: state.selectedLog.item,
+	isFetching: state.selectedLog.isFetching,
 });
 
 export default connect(mapStateToProps, { fetchLogById })(ServiceDetail);

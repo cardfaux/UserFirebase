@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
 import auth from './auth';
-import services from './services';
-import selectedService from './selectedService';
+import logs from './logs';
+import selectedLog from './selectedLog';
 
-const serviceApp = combineReducers({
-	services,
-	selectedService,
+const FirebaseApp = combineReducers({
+	logs,
+	selectedLog,
 	auth,
 });
 
-export default serviceApp;
+export default FirebaseApp;

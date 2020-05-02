@@ -1,4 +1,5 @@
 import React, { useEffect, Fragment } from 'react';
+import { connect } from 'react-redux';
 import withAuthorization from '../../components/hoc/withAuthorization';
 import LogItem from '../../components/logs/LogItem';
 
@@ -7,13 +8,15 @@ import { fetchUserLogs } from '../../app/Redux/actions/index';
 const UserServices = (props) => {
 	const {
 		auth: { user },
-		dispatch,
+		fetchUserLogs,
 	} = props;
 	const { services } = user;
+	console.log('USER', user);
+	console.log('SERVICES', services);
 
 	useEffect(() => {
-		dispatch(fetchUserLogs(user.uid));
-	}, [dispatch, user.uid]);
+		fetchUserLogs(user.uid);
+	}, [user.uid, fetchUserLogs]);
 
 	const renderServices = (services) => {
 		return services.map((service) => {
@@ -31,4 +34,6 @@ const UserServices = (props) => {
 	);
 };
 
-export default withAuthorization(UserServices);
+export default withAuthorization(
+	connect(null, { fetchUserLogs })(UserServices)
+);

@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import serviceApp from '../reducers/index';
+import FirebaseApp from '../reducers/index';
 
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
-const initStore = () => {
+const createdStore = () => {
 	const middlewares = [thunk];
 	const composeEnhancers =
 		(typeof window !== 'undefined' &&
@@ -16,11 +16,11 @@ const initStore = () => {
 	}
 
 	const store = createStore(
-		serviceApp,
+		FirebaseApp,
 		composeEnhancers(applyMiddleware(...middlewares))
 	);
 
 	return store;
 };
 
-export default initStore;
+export default createdStore;

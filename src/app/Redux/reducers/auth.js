@@ -17,7 +17,7 @@ const auth = (state = INITIAL_STATE, action) => {
 		case RESET_AUTH_STATE:
 			return { ...state, isAuthResolved: false };
 		case FETCH_USER_SERVICES_SUCCESS:
-			return { ...state, user: { ...state.user, services: action.services } };
+			return { ...state, user: { ...state.user, services: action.payload } };
 		default:
 			return state;
 	}
