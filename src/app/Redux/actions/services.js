@@ -8,6 +8,9 @@ import * as api from '../../../api/index';
 
 export const createService = (newService, userId) => {
 	//newService.price = parseInt(newService.price, 10)
+	newService.reps = parseInt(newService.reps);
+	newService.sets = parseInt(newService.sets);
+	newService.weight = parseInt(newService.weight);
 	newService.user = api.createRef('profiles', userId);
 
 	return api.createService(newService);
@@ -29,19 +32,17 @@ export const fetchUserServices = (userId) => async (dispatch) => {
 	});
 };
 
-export const fetchServiceById = (serviceId) => (dispatch, getState) => {
+export const fetchServiceById = (serviceId) => async (dispatch, getState) => {
 	const lastService = getState().selectedService.item;
 	if (lastService.id && lastService.id === serviceId) {
 		return Promise.resolve();
 	}
 
 	dispatch({ type: REQUEST_SERVICE });
-	return api.fetchServiceById(serviceId).then(async (service) => {
-		// service.user = await api.getUserProfile(service.user)
-		const user = await service.user.get();
-		service.user = user.data();
-		service.user.id = user.id;
-
-		dispatch({ type: FETCH_SERVICE_SUCCESS, service });
-	});
+	const service = await api.fetchServiceById(serviceId);
+	// service.user = await api.getUserProfile(service.user)
+	const user = await service.user.get();
+	service.user = user.data();
+	//service.user.id = user.id;
+	dispatch({ type: FETCH_SERVICE_SUCCESS, service });
 };

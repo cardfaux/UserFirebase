@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import ServiceItem from '../components/ServiceItem';
 import { fetchServices } from '../app/Redux/actions/index';
 
-const Home = ({ services, fetchServices }) => {
+const Home = ({ services, fetchServices, authUser }) => {
 	useEffect(() => {
 		fetchServices();
 	}, [fetchServices]);
 
 	const renderServices = (services) => {
 		return services.map((service) => {
-			return <ServiceItem key={service.id} service={service} />;
+			return <ServiceItem user={authUser} key={service.id} service={service} />;
 		});
 	};
 
@@ -25,6 +25,9 @@ const Home = ({ services, fetchServices }) => {
 	);
 };
 
-const mapStateToProps = (state) => ({ services: state.services.items });
+const mapStateToProps = (state) => ({
+	services: state.services.items,
+	authUser: state.auth.user,
+});
 
 export default connect(mapStateToProps, { fetchServices })(Home);

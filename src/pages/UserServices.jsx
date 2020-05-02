@@ -10,6 +10,7 @@ const UserServices = (props) => {
 		dispatch,
 	} = props;
 	const { services } = user;
+	console.log('USER', user);
 
 	useEffect(() => {
 		dispatch(fetchUserServices(user.uid));
@@ -17,7 +18,7 @@ const UserServices = (props) => {
 
 	const renderServices = (services) => {
 		return services.map((service) => {
-			return <ServiceItem key={service.id} service={service} />;
+			return <ServiceItem user={user} key={service.id} service={service} />;
 		});
 	};
 

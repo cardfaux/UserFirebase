@@ -3,11 +3,9 @@ import 'firebase/auth';
 import { createRef } from './index';
 import database from '../app/Firebase/DataBase/cloudFirestore';
 
-export const createService = (newService) => {
-	return database
-		.collection('services')
-		.add(newService)
-		.then((docRef) => docRef.id);
+export const createService = async (newService) => {
+	const docRef = await database.collection('services').add(newService);
+	return docRef.id;
 };
 
 export const fetchServiceById = async (serviceId) => {
@@ -31,6 +29,19 @@ export const fetchUserServices = async (userId) => {
 		.where('user', '==', userRef)
 		.get();
 	const services = snapshot.docs.map((doc) => ({
+		id: doc.id,
+		...doc.data(),
+	}));
+	return services;
+};
+
+export const updateUserService = async (userId) => {
+	const userRef = createRef('profiles', userId);
+	const snapShot = await database
+		.collection('services')
+		.where('user', '==', userRef)
+		.get();
+	const services = snapShot.docs.map((doc) => ({
 		id: doc.id,
 		...doc.data(),
 	}));

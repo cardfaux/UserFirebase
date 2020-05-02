@@ -46,10 +46,7 @@ export const onAuthStateChanged = (onAuthCallback) => {
 	return firebase.auth().onAuthStateChanged(onAuthCallback);
 };
 
-export const getUserProfile = (uid) => {
-	return database
-		.collection('profiles')
-		.doc(uid)
-		.get()
-		.then((snapshot) => ({ uid, ...snapshot.data() }));
+export const getUserProfile = async (uid) => {
+	const snapshot = await database.collection('profiles').doc(uid).get();
+	return { uid, ...snapshot.data() };
 };

@@ -7,10 +7,9 @@ export const register = (registerFormData) => {
 
 export const login = (loginData) => api.login({ ...loginData });
 
-export const logout = () => (dispatch) => {
-	return api.logout().then((_) => {
-		return dispatch({ user: null, type: SET_AUTH_USER });
-	});
+export const logout = () => async (dispatch) => {
+	await api.logout();
+	return dispatch({ user: null, type: SET_AUTH_USER });
 };
 
 export const onAuthStateChanged = (onAuthCallback) => {
