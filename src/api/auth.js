@@ -18,6 +18,7 @@ export const registerUser = async ({ email, password, fullName }) => {
 			fullName,
 			email,
 			logs: [],
+			createdAt: new Date(),
 			description: '',
 		};
 		await createUserProfile(userProfile);
@@ -63,6 +64,7 @@ export const signInWithGoogle = async () => {
 				fullName: user.displayName,
 				email: user.email,
 				logs: [],
+				createdAt: new Date(),
 				description: '',
 			};
 			await createUserProfile(userProfile);
@@ -86,6 +88,7 @@ export const signInWithGitHub = async () => {
 				fullName: user.displayName,
 				email: user.email,
 				logs: [],
+				createdAt: new Date(),
 				description: '',
 			};
 			await createUserProfile(userProfile);

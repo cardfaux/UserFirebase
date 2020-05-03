@@ -10,8 +10,6 @@ import LogDetailPage from '../../pages/logs/LogDetail';
 import MyLogsPage from '../../pages/logs/MyLogs';
 import LogDetailUpdate from '../../pages/logs/LogDetailUpdate';
 
-import TestPage from '../../pages/test/SendToFirebase';
-
 const Routes = () => {
 	return (
 		<Switch>
@@ -22,7 +20,6 @@ const Routes = () => {
 			<Route path='/logs/me' component={MyLogsPage} />
 			<Route path='/log/update/:logId' component={LogDetailUpdate} />
 			<Route path='/log/:logId' component={LogDetailPage} />
-			<Route path='/test' component={TestPage} />
 		</Switch>
 	);
 };
