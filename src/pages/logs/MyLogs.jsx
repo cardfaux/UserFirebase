@@ -5,22 +5,20 @@ import LogItem from '../../components/logs/LogItem';
 
 import { fetchUserLogs } from '../../app/Redux/actions/index';
 
-const UserServices = (props) => {
+const MyLogs = (props) => {
 	const {
 		auth: { user },
 		fetchUserLogs,
 	} = props;
-	const { services } = user;
-	console.log('USER', user);
-	console.log('SERVICES', services);
+	const { logs } = user;
 
 	useEffect(() => {
 		fetchUserLogs(user.uid);
 	}, [user.uid, fetchUserLogs]);
 
-	const renderServices = (services) => {
-		return services.map((service) => {
-			return <LogItem key={service.id} service={service} />;
+	const renderServices = (logs) => {
+		return logs.map((log) => {
+			return <LogItem key={log.id} log={log} />;
 		});
 	};
 
@@ -29,11 +27,9 @@ const UserServices = (props) => {
 			<h1 className='mt-2' style={{ textAlign: 'center' }}>
 				Your Logs
 			</h1>
-			<div className='home-page'>{renderServices(services)}</div>
+			<div className='home-page'>{renderServices(logs)}</div>
 		</Fragment>
 	);
 };
 
-export default withAuthorization(
-	connect(null, { fetchUserLogs })(UserServices)
-);
+export default withAuthorization(connect(null, { fetchUserLogs })(MyLogs));

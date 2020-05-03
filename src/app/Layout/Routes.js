@@ -16,10 +16,10 @@ const Routes = () => {
 			<Route exact path='/' component={HomePage} />
 			<Route path='/login' component={LoginPage} />
 			<Route path='/register' component={RegisterPage} />
-			<Route path='/create/service' component={CreateLogPage} />
-			<Route path='/services/me' component={MyLogsPage} />
-			<Route path='/service/update/:serviceId' component={LogDetailUpdate} />
-			<Route path='/services/:serviceId' component={LogDetailPage} />
+			<Route path='/create/log' component={CreateLogPage} />
+			<Route path='/logs/me' component={MyLogsPage} />
+			<Route path='/log/update/:logId' component={LogDetailUpdate} />
+			<Route path='/log/:logId' component={LogDetailPage} />
 		</Switch>
 	);
 };

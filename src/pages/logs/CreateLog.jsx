@@ -39,7 +39,7 @@ const CreateLog = (props) => {
 	return (
 		<Card className={classes.root}>
 			<CardContent>
-				<h1>Create Service Form</h1>
+				<h1>Create Log Form</h1>
 				<CreateLogForm onFormData={handleSubmit} />
 			</CardContent>
 		</Card>

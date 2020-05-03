@@ -9,7 +9,7 @@ export const login = (loginData) => api.login({ ...loginData });
 
 export const logout = () => async (dispatch) => {
 	await api.logout();
-	return dispatch({ user: null, type: SET_AUTH_USER });
+	return dispatch({ type: SET_AUTH_USER, payload: null });
 };
 
 export const onAuthStateChanged = (onAuthCallback) => {
@@ -20,9 +20,9 @@ export const storeAuthUser = (authUser) => (dispatch) => {
 	dispatch({ type: RESET_AUTH_STATE });
 	if (authUser) {
 		return api.getUserProfile(authUser.uid).then((userWithProfile) => {
-			return dispatch({ user: userWithProfile, type: SET_AUTH_USER });
+			return dispatch({ type: SET_AUTH_USER, payload: userWithProfile });
 		});
 	} else {
-		return dispatch({ user: null, type: SET_AUTH_USER });
+		return dispatch({ type: SET_AUTH_USER, payload: null });
 	}
 };

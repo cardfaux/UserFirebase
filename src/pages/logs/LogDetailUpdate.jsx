@@ -17,11 +17,11 @@ const LogDetailUpdate = (props) => {
 	const { fetchLogById, isFetching, log, authUserId } = props;
 	const [redirect, setRedirect] = useState(false);
 	const { addToast } = useToasts();
-	const { serviceId } = useParams();
+	const { logId } = useParams();
 
 	useEffect(() => {
-		fetchLogById(serviceId);
-	}, [serviceId, fetchLogById]);
+		fetchLogById(logId);
+	}, [logId, fetchLogById]);
 
 	const handleSubmit = async (formData) => {
 		try {
@@ -45,7 +45,7 @@ const LogDetailUpdate = (props) => {
 
 	const classes = useStyles();
 	if (redirect) return <Redirect to='/' />;
-	if (isFetching || serviceId !== log.id) {
+	if (isFetching || logId !== log.id) {
 		return <LoadingSpinner />;
 	}
 

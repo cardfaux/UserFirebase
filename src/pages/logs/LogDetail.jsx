@@ -27,13 +27,13 @@ const useStyles = makeStyles((theme) => ({
 const ServiceDetail = ({ fetchLogById, isFetching, log }) => {
 	const classes = useStyles();
 
-	const { serviceId } = useParams();
+	const { logId } = useParams();
 
 	useEffect(() => {
-		fetchLogById(serviceId);
-	}, [serviceId, fetchLogById]);
+		fetchLogById(logId);
+	}, [logId, fetchLogById]);
 
-	if (isFetching || serviceId !== log.id) {
+	if (isFetching || logId !== log.id) {
 		return <LoadingSpinner />;
 	}
 

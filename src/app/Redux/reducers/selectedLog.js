@@ -1,43 +1,10 @@
-// import { FETCH_SERVICE_SUCCESS, REQUEST_SERVICE } from '../types/index';
-// import { combineReducers } from 'redux';
-
-// const initSelectedService = () => {
-// 	const item = (state = {}, action) => {
-// 		switch (action.type) {
-// 			case FETCH_SERVICE_SUCCESS:
-// 				return action.service;
-// 			default:
-// 				return state;
-// 		}
-// 	};
-
-// 	const isFetching = (state = false, action) => {
-// 		switch (action.type) {
-// 			case REQUEST_SERVICE:
-// 				return true;
-// 			case FETCH_SERVICE_SUCCESS:
-// 				return false;
-// 			default:
-// 				return state;
-// 		}
-// 	};
-
-// 	return combineReducers({
-// 		item,
-// 		isFetching,
-// 	});
-// };
-
-// const selectedService = initSelectedService();
-// export default selectedService;
-
-import { FETCH_SERVICE_SUCCESS, REQUEST_SERVICE } from '../types/index';
+import { FETCH_LOG_SUCCESS, REQUEST_LOG } from '../types/index';
 import { combineReducers } from 'redux';
 
-const initSelectedService = () => {
+const initSelectedLog = () => {
 	const item = (state = {}, action) => {
 		switch (action.type) {
-			case FETCH_SERVICE_SUCCESS:
+			case FETCH_LOG_SUCCESS:
 				return action.payload;
 			default:
 				return state;
@@ -46,9 +13,9 @@ const initSelectedService = () => {
 
 	const isFetching = (state = false, action) => {
 		switch (action.type) {
-			case REQUEST_SERVICE:
+			case REQUEST_LOG:
 				return true;
-			case FETCH_SERVICE_SUCCESS:
+			case FETCH_LOG_SUCCESS:
 				return false;
 			default:
 				return state;
@@ -61,5 +28,5 @@ const initSelectedService = () => {
 	});
 };
 
-const selectedService = initSelectedService();
-export default selectedService;
+const selectedLog = initSelectedLog();
+export default selectedLog;

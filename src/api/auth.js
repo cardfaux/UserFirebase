@@ -17,7 +17,7 @@ export const registerUser = async ({ email, password, fullName }) => {
 			uid: user.uid,
 			fullName,
 			email,
-			services: [],
+			logs: [],
 			description: '',
 		};
 		await createUserProfile(userProfile);

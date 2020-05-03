@@ -52,7 +52,7 @@ const NavBar = (props) => {
 							className={classes.link}
 							aria-label='to faq page'
 							component={RouterLink}
-							to='/services/me'
+							to='/logs/me'
 							color='inherit'
 						>
 							My Logs
@@ -63,7 +63,7 @@ const NavBar = (props) => {
 							className={classes.link}
 							aria-label='to faq page'
 							component={RouterLink}
-							to='/create/service'
+							to='/create/log'
 							color='inherit'
 						>
 							Add Log

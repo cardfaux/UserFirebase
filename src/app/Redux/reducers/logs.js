@@ -1,4 +1,4 @@
-import { FETCH_SERVICES_SUCCESS } from '../types';
+import { FETCH_LOGS_SUCCESS } from '../types';
 
 const INITIAL_STATE = {
 	items: [],
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 
 const logsReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-		case FETCH_SERVICES_SUCCESS:
+		case FETCH_LOGS_SUCCESS:
 			return { ...state, items: action.payload };
 		default:
 			return state;

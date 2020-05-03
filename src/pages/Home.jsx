@@ -12,7 +12,7 @@ const Home = ({ logs, fetchLogs }) => {
 
 	const renderServices = (logs) => {
 		return logs.map((log) => {
-			return <LogItem key={log.id} service={log} />;
+			return <LogItem key={log.id} log={log} />;
 		});
 	};
 

@@ -8,7 +8,6 @@ import Routes from './app/Layout/Routes';
 import { logout } from './app/Redux/actions/index';
 
 const FirebaseApp = (props) => {
-	//const logoutUser = () => props.dispatch(logout());
 	const logoutUser = () => props.logout();
 
 	return props.auth.isAuthResolved ? (

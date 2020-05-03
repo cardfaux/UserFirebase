@@ -1,28 +1,27 @@
 import {
-	FETCH_SERVICES_SUCCESS,
-	FETCH_SERVICE_SUCCESS,
-	REQUEST_SERVICE,
-	FETCH_USER_SERVICES_SUCCESS,
+	FETCH_LOGS_SUCCESS,
+	FETCH_LOG_SUCCESS,
+	REQUEST_LOG,
+	FETCH_USER_LOGS_SUCCESS,
 } from '../types';
 import * as api from '../../../api/index';
 
-export const createLog = (newService, userId) => {
-	//newService.price = parseInt(newService.price, 10)
-	newService.reps = parseInt(newService.reps);
-	newService.sets = parseInt(newService.sets);
-	newService.weight = parseInt(newService.weight);
-	newService.user = api.createRef('profiles', userId);
+export const createLog = (newLog, userId) => {
+	newLog.reps = parseInt(newLog.reps);
+	newLog.sets = parseInt(newLog.sets);
+	newLog.weight = parseInt(newLog.weight);
+	newLog.user = api.createRef('profiles', userId);
 
-	return api.createLog(newService);
+	return api.createLog(newLog);
 };
 
-export const updateLog = (docId, updatedService, userId) => {
-	updatedService.reps = parseInt(updatedService.reps);
-	updatedService.sets = parseInt(updatedService.sets);
-	updatedService.weight = parseInt(updatedService.weight);
-	updatedService.user = api.createRef('profiles', userId);
+export const updateLog = (docId, updatedLog, userId) => {
+	updatedLog.reps = parseInt(updatedLog.reps);
+	updatedLog.sets = parseInt(updatedLog.sets);
+	updatedLog.weight = parseInt(updatedLog.weight);
+	updatedLog.user = api.createRef('profiles', userId);
 
-	return api.updateLog(docId, updatedService);
+	return api.updateLog(docId, updatedLog);
 };
 
 export const deleteLog = (docId) => {
@@ -32,7 +31,7 @@ export const deleteLog = (docId) => {
 export const fetchLogs = () => async (dispatch) => {
 	const logs = await api.fetchLogs();
 	return dispatch({
-		type: FETCH_SERVICES_SUCCESS,
+		type: FETCH_LOGS_SUCCESS,
 		payload: logs,
 	});
 };
@@ -40,21 +39,22 @@ export const fetchLogs = () => async (dispatch) => {
 export const fetchUserLogs = (userId) => async (dispatch) => {
 	const logs = await api.fetchUserLogs(userId);
 	return dispatch({
-		type: FETCH_USER_SERVICES_SUCCESS,
+		type: FETCH_USER_LOGS_SUCCESS,
 		payload: logs,
 	});
 };
 
-export const fetchLogById = (serviceId) => async (dispatch, getState) => {
+export const fetchLogById = (logId) => async (dispatch, getState) => {
+	console.log('GETSTATE', getState);
 	const lastViewedLog = getState().selectedLog.item;
-	if (lastViewedLog.id && lastViewedLog.id === serviceId) {
+	if (lastViewedLog.id && lastViewedLog.id === logId) {
 		return Promise.resolve();
 	}
 
-	dispatch({ type: REQUEST_SERVICE });
-	const log = await api.fetchLogById(serviceId);
+	dispatch({ type: REQUEST_LOG });
+	const log = await api.fetchLogById(logId);
 	const user = await log.user.get();
 	log.user = user.data();
 	log.user.id = user.id;
-	dispatch({ type: FETCH_SERVICE_SUCCESS, payload: log });
+	dispatch({ type: FETCH_LOG_SUCCESS, payload: log });
 };

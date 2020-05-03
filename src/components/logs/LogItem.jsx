@@ -24,14 +24,14 @@ const useStyles = makeStyles({
 	},
 });
 
-const LogItem = ({ service, user }) => {
+const LogItem = ({ log, user }) => {
 	const [redirect, setRedirect] = useState(false);
 	const { addToast } = useToasts();
 	const classes = useStyles();
 
 	const handleDelete = async () => {
 		try {
-			const dataUpdated = await deleteLog(service.id);
+			const dataUpdated = await deleteLog(log.id);
 
 			addToast('Deleted Successfully', { appearance: 'success' });
 			setRedirect(true);
@@ -48,30 +48,30 @@ const LogItem = ({ service, user }) => {
 			<CardActionArea>
 				<CardMedia
 					className={classes.media}
-					image={service.image}
-					title={service.name}
+					image={log.image}
+					title={log.name}
 				/>
 				<CardContent>
 					<Typography gutterBottom variant='h5' component='h2'>
-						{service.title}
+						{log.title}
 					</Typography>
 					<Typography variant='body2' color='textSecondary' component='p'>
-						{service.details}
+						{log.details}
 					</Typography>
 				</CardContent>
 			</CardActionArea>
 			<CardActions>
-				{service.user.id === user.user.uid && (
+				{log.user.id === user.user.uid && (
 					<Button size='small' color='primary'>
-						<Link to={`/services/${service.id}`}>See Details</Link>
+						<Link to={`/log/${log.id}`}>See Details</Link>
 					</Button>
 				)}
-				{service.user.id === user.user.uid && (
+				{log.user.id === user.user.uid && (
 					<Button size='small' color='secondary'>
-						<Link to={`/service/update/${service.id}`}>Edit</Link>
+						<Link to={`/log/update/${log.id}`}>Edit</Link>
 					</Button>
 				)}
-				{service.user.id === user.user.uid && (
+				{log.user.id === user.user.uid && (
 					<Button onClick={handleDelete} size='small' color='secondary'>
 						Delete
 					</Button>
