@@ -13,6 +13,19 @@ const useStyles = makeStyles((theme) => ({
 		marginBottom: '2rem',
 		backgroundColor: 'black',
 	},
+	login: {
+		border: 'none',
+		fontSize: 'x-large',
+		color: 'white',
+		backgroundColor: '#0069d9',
+		'&:hover': {
+			backgroundColor: '#0062cc',
+			border: '1px solid #0069d9',
+			boxShadow: 'none',
+			transition: 'background-color 300ms linear',
+			cursor: 'pointer',
+		},
+	},
 }));
 
 const LoginForm = (props) => {
@@ -46,7 +59,7 @@ const LoginForm = (props) => {
 						/>
 					</div>
 				</div>
-				<button type='submit' className='button-primary'>
+				<button type='submit' className={classes.login}>
 					Login
 				</button>
 				<Divider className={classes.divider} variant='fullWidth' />

@@ -32,7 +32,7 @@ export default function GoogleLogin() {
 
 	return (
 		<Button onClick={signInWithGitHub} className={classes.root}>
-			<Icon className='fab fa-github' color='' />
+			<Icon className='fab fa-github' />
 		</Button>
 	);
 }

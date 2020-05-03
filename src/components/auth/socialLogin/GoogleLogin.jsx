@@ -31,7 +31,7 @@ export default function GoogleLogin() {
 
 	return (
 		<Button onClick={signInWithGoogle} className={classes.root}>
-			<Icon className='fab fa-google' color='' />
+			<Icon className='fab fa-google' />
 		</Button>
 	);
 }
