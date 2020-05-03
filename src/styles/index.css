@@ -1,92 +1,91 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+	text-decoration: none;
+	color: inherit;
 }
 
 .mt-2 {
-  margin-top: 2rem;
+	margin-top: 2rem;
 }
 
 .primary {
-  background-color: cornflowerblue;
+	background-color: cornflowerblue;
 }
 
 .register-form {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .register-form form {
-  width: 100%;
+	width: 100%;
 }
 
 .register-form .field {
-  margin: 2rem auto;
+	margin: 2rem auto;
 }
 
 .register-form .field .control {
-  width: 100%;
+	width: 100%;
 }
 
 .register-form .field .control input,
 textarea {
-  width: 100%;
+	width: 100%;
 }
 
 .register-form form button {
-  width: 100%;
-  padding: 0.5rem
+	width: 100%;
+	padding: 0.5rem;
 }
 
 .form-error {
-  font-size: smaller;
-  color: red;
-
+	font-size: smaller;
+	color: red;
 }
 
 .button-primary {
-  font-size: x-large;
-  color: white;
-  background-color: cornflowerblue;
+	font-size: x-large;
+	color: white;
+	background-color: cornflowerblue;
 }
 
 .home-page {
-  flex-wrap: wrap;
-  display: flex;
-  justify-content: center;
-  margin-top: 2%;
+	flex-wrap: wrap;
+	display: flex;
+	justify-content: center;
+	margin-top: 2%;
 }
 
 .detail-page {
-  margin-top: 5rem;
+	margin-top: 5rem;
 }
 
 .detail-page .image img {
-  width: 40rem;
+	width: 40rem;
 }
 
 .hero-body {
-  width: 40rem;
+	width: 40rem;
 }
 
 .detail-info {
-  display: flex;
-  flex-direction: row-reverse;
-  margin-right: 2rem;
+	display: flex;
+	flex-direction: row-reverse;
+	margin-right: 2rem;
 }
 
 .weight,
 .reps {
-  text-align: center;
-  margin-right: 4rem;
-  border: 1px solid black;
-  height: 50rem;
-  margin-top: -30rem;
-  width: 10rem;
+	text-align: center;
+	margin-right: 4rem;
+	border: 1px solid black;
+	height: 50rem;
+	margin-top: -30rem;
+	width: 10rem;
 }
