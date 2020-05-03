@@ -50,3 +50,48 @@ export const getUserProfile = async (uid) => {
 	const snapshot = await database.collection('profiles').doc(uid).get();
 	return { uid, ...snapshot.data() };
 };
+
+export const signInWithGoogle = async () => {
+	try {
+		const provider = new firebase.auth.GoogleAuthProvider();
+		const res = await firebase.auth().signInWithPopup(provider);
+		const { user } = res;
+		const profile = await getUserProfile(user.uid);
+		if (profile) {
+			const userProfile = {
+				uid: user.uid,
+				fullName: user.displayName,
+				email: user.email,
+				logs: [],
+				description: '',
+			};
+			await createUserProfile(userProfile);
+		}
+		return true;
+	} catch (error) {
+		return Promise.reject(error.message);
+	}
+};
+
+export const signInWithGitHub = async () => {
+	try {
+		const provider = new firebase.auth.GithubAuthProvider();
+		provider.addScope('repo');
+		const res = await firebase.auth().signInWithPopup(provider);
+		const { user } = res;
+		const profile = await getUserProfile(user.uid);
+		if (profile) {
+			const userProfile = {
+				uid: user.uid,
+				fullName: user.displayName,
+				email: user.email,
+				logs: [],
+				description: '',
+			};
+			await createUserProfile(userProfile);
+		}
+		return true;
+	} catch (error) {
+		return Promise.reject(error.message);
+	}
+};

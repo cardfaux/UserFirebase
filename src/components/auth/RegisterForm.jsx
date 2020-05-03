@@ -1,10 +1,24 @@
 /* eslint-disable no-useless-escape */
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { makeStyles } from '@material-ui/core/styles';
+import Divider from '@material-ui/core/Divider';
+
+import GoogleLogin from '../../components/auth/socialLogin/GoogleLogin';
+import GithubLogin from '../../components/auth/socialLogin/GithubLogin';
 
 import { sameAs } from '../../app/utils/validators';
 
+const useStyles = makeStyles((theme) => ({
+	divider: {
+		marginTop: '2rem',
+		marginBottom: '2rem',
+		backgroundColor: 'black',
+	},
+}));
+
 const RegisterForm = (props) => {
+	const classes = useStyles();
 	const { register, handleSubmit, errors, getValues } = useForm();
 
 	return (
@@ -122,6 +136,9 @@ const RegisterForm = (props) => {
 				<button type='submit' className='button-primary'>
 					Register
 				</button>
+				<Divider className={classes.divider} variant='fullWidth' />
+				<GoogleLogin />
+				<GithubLogin />
 			</form>
 		</div>
 	);
